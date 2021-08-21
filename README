@@ -1,0 +1,30 @@
+Rutinas ->
+[
+    {
+        id: '1b9d6bcd-bbfd-4b2d-9b5d-ab8dfbbd4bed',
+        titulo: 'Antebrazo 1',
+        musculos: ['Antebrazo'],
+        link: 'https://www.youtube.com/watch?v=Wqi10vJRGsw'
+    }
+]
+
+Diario semanal ->
+[
+    {
+        id: '1b9d6bcd-bbfd-4b2d-9b5d-ab8dfbbd4bed' // id => rutinas
+    }
+]
+
+Calendario ->
+[
+    {
+        y2021: [
+           [ //mes 0
+               { // día
+                    dia: 'yyyy-mm-dd ',
+                    entreno: ['1b9d6bcd-bbfd-4b2d-9b5d-ab8dfbbd4bed']
+                },
+           ],
+        ]
+    }
+]

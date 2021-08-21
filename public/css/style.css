@@ -1,0 +1,315 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat',sans-serif;
+    text-decoration: none;
+    color: black;
+}
+
+body{
+    background-color: #dae0e6;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 10px;
+}
+
+header{
+    background-color: white;
+    width: 100%;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    padding: 0 5px;
+    display: flex;
+    justify-content: space-between;
+}
+
+
+header  a{
+    padding: 5px 10px;
+    border: none;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 16px;
+    background-color: royalblue;
+    color: #fff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+header button img{
+    width: 18px;
+    margin-right: 5px;
+}
+
+#capa_1{
+    fill: white;
+}
+header h1{
+    font-size: 27px;
+    font-weight: 400;
+    cursor: pointer;
+}
+
+/*  */
+
+
+section{
+    max-width: 100%;
+    width: 1000px;
+    height: auto;
+    margin: 15px 10px 0 10px;
+    background-color: white;
+    padding: 10px;
+    border-radius: 5px;
+    display: inline-flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+ .i__video_box{
+    max-width: 250px;
+    min-width: 150px;
+    width: auto;
+
+    border-radius: 5px;
+    cursor: pointer;
+    transition: transform ease 0.1s;
+    overflow: hidden;
+
+    box-shadow:
+    -7px -7px 20px 0px #fff9,
+    -4px -4px 5px 0px #fff9,
+    7px 7px 20px 0px #0002,
+    4px 4px 5px 0px #0001,
+    inset 0px 0px 0px 0px #fff9,
+    inset 0px 0px 0px 0px #0001,
+    inset 0px 0px 0px 0px #fff9,        inset 0px 0px 0px 0px #0001;
+  transition:box-shadow 0.6s cubic-bezier(.79,.21,.06,.81);
+
+} 
+
+
+.i__video_box p{
+    padding: 2px 5px; 
+    color: white;
+    font-weight: 400;
+}
+
+.i__video_box div{
+    padding: 2px 5px;
+}
+
+.i__video_box:hover{
+    transform: scale(1.05);
+}
+
+.i__video_box .img__muscles{
+    display: flex;
+}
+
+.i__video_box .img__muscles img{
+    width: 25px;
+}
+
+.i__video_box p {
+    background-color: royalblue;
+    width: 100%;
+}
+.i__video_box hr{
+    border: none;
+    background-color: rgba(0, 0, 0, 0.884);
+    height: 1px;
+
+}
+/* ALERT BOX */
+
+.alert-box{
+    display: flex;
+    max-width: 100%;
+    width: 1000px;
+    height: auto;
+    margin: 15px 10px 0 10px;
+    background-color: rgba(47, 253, 116, 0.486);
+    padding: 10px;
+    border-radius: 5px;
+    justify-content: space-between;
+}
+
+.alert-box a{
+    margin: 0 5px;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.alert-box img{
+    display: flex;
+    width: 20px;
+    float: right;
+    cursor: pointer;
+    justify-self: flex-end;
+    transition: transform 0.3s ease;
+}
+
+.alert-box img:hover{
+    transform: scale(1.05);
+}
+
+.dp{
+    display: flex;
+}
+
+.ai{
+    align-items: center;
+}
+
+
+/* Watch */
+
+.w_section{
+    max-width: 100%;
+    width: 1000px;
+    height: auto;
+    margin: 15px 10px 0 10px;
+    background-color: white;
+    padding: 10px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+
+/* Rutinas */
+
+.r_section{
+    max-width: 100%;
+    width: 1000px;
+    height: auto;
+    margin: 15px 10px 0 10px;
+    background-color: white;
+    padding: 10px;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+
+}
+
+.r_section .r_div {
+    width: 100%;
+    height: auto;
+    border: 1px solid black; /* <-- */
+    border-radius: 5px !important;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.r_section .r__day{
+    background-color: royalblue;
+    color: white;
+    padding: 5px;
+}
+
+.r_section .__div{
+    overflow-x: auto;
+    width: 100%;
+    display: flex;
+    overflow: hidden;
+}
+
+.r_section .r__work_box{
+    width: 100%;
+    display: flex;
+    gap: 10px;
+    padding: 5px;
+    min-height: 75px;
+    overflow-x: auto;
+    flex-wrap: wrap;
+}
+
+.r__work_box .r__rutina_box{
+    cursor: pointer;
+    border: 1px solid black;
+    border-radius: 5px;
+    position: relative;
+}
+
+.r__work_box .r__rutina_box:hover .r__delete{
+    display: flex;
+}
+
+.r__work_box .r__delete{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background: #ff8a8ac7;
+    display: none;
+    align-items: center;
+    justify-content: center;
+}
+
+.r__work_box .r__delete img{
+    width: 55px;
+    padding: 10px;
+    transition: transform 0.1s ease-in;
+}
+
+.r__work_box .r__delete img:hover{
+    transform: scale(1.1);
+}
+.r__work_box .r__delete img:active{
+    transform: scale(0.9);
+}
+
+
+.r__work_box .r__rutina_box .r__p{
+    background-color: rgb(49, 49, 49);
+    padding: 4px;
+}
+
+.r__work_box .r__rutina_box p {
+    margin-right: 20px;
+    color: white;
+    font-size: 14px;
+}
+
+
+.r__rutina_box .img__muscles{
+    display: flex;
+    gap: 5px;
+    padding: 3px;
+}
+.r__work_box img{
+    width: 30px;
+}
+
+.r_section .__div .add_workout{
+    width: 100px;
+    background: #74ff92a6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.r_section .__div .add_workout img{
+    width: 65px;
+    padding: 10px;
+    cursor: pointer;
+    transition: transform 0.1s ease-in;
+}
+
+.r_section .__div .add_workout img:hover{
+    transform: scale(1.1);
+}
+
+.r_section .__div .add_workout img:active{
+    transform: scale(0.9);
+
+}

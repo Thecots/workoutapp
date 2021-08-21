@@ -1,0 +1,63 @@
+[
+    {
+        "id": 1,
+        "titulo": "Antebrazo 1",
+        "musculos": ["antebrazo"],
+        "link": "https://www.youtube.com/watch?v=Wqi10vJRGsw"
+    },
+    {
+        "id": 2,
+        "titulo": "Bicep 1",
+        "musculos": ["bicep"],
+        "link": "https://www.youtube.com/watch?v=O7HWvgrEY3E"
+    },
+    {
+        "id": 3,
+        "titulo": "Tricep 1",
+        "musculos": ["tricep"],
+        "link": "https://www.youtube.com/watch?v=2mU1YeMcP6s"
+    },
+    {
+        "id": 4,
+        "titulo": "Bicep & Tricep",
+        "musculos": ["bicep","tricep"],
+        "link": "https://www.youtube.com/watch?v=p6YoI2IgmG0"
+    },
+    {
+        "id": 5,
+        "titulo": "Antebrazo 2",
+        "musculos": ["antebrazo"],
+        "link": "https://www.youtube.com/watch?v=HU-73IGe6IY"
+    },
+    {
+        "id": 6,
+        "titulo": "Pecho & hombro",
+        "musculos": ["pecho","hombro"],
+        "link": "https://www.youtube.com/watch?v=yeoo2LOU1V0"
+    },
+    {
+        "id": 7,
+        "titulo": "Espalda & tricep",
+        "musculos": ["espalda","tricep"],
+        "link": "https://www.youtube.com/watch?v=DdCwFRl3VFw"
+    },
+    {
+        "id": 8,
+        "titulo": "Hombro",
+        "musculos": ["hombro"],
+        "link": "https://www.youtube.com/watch?v=I6g5hP7FVFM"
+    },
+    {
+        "id": 9,
+        "titulo": "Espalda",
+        "musculos": ["espalda"],
+        "link": "https://www.youtube.com/watch?v=inRTu5CnqOk"
+    },
+    {
+        "id": 10,
+        "titulo": "Pecho",
+        "musculos": ["pecho"],
+        "link": "https://www.youtube.com/watch?v=7T96n9ZdHXE"
+    }
+
+]
