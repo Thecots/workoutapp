@@ -38,7 +38,6 @@ function dayWork(e){
         let r = '';
         for (let i = 0; i < e.length; i++) {
             let x = e[i].link.replace('https://www.youtube.com/watch?v=','')
-            console.log(x);
             if(e.length > 1){
                 if(i < (e.length-1)){
                     r += `

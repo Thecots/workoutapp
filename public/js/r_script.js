@@ -2,9 +2,9 @@ var socket = io();
 loadScreen(true);
 socket.emit('client:get_Rutinas+Horario');
 
+const dias = ['Lunes','Martes','Miercoles','Jueves','Viernes','Sabado','Domingo'];
 
 socket.on('server:Rutinas', function(data){
-    let dias = ['Lunes','Martes','Miercoles','Jueves','Viernes','Sabado','Domingo'];
     let [DS, R] = data;
     let template = '';
 
@@ -13,7 +13,7 @@ socket.on('server:Rutinas', function(data){
             <div class="r_div">
                 <div class="r__day">${dias[i]}</div>
                 <div class="__div">
-                    ${getDayWorks(DS[i],R)}
+                    ${getDayWorks(DS[i],R,i)}
                 </div>
             </div>
         `;
@@ -38,7 +38,7 @@ function musclesImg(e){
     return template;
 }
 
-function getDayWorks(e,x){
+function getDayWorks(e,x,d){
     let template = '<div class="r__work_box">';
     for (let i = 0; i < e.length; i++) {
         let result = x.filter(rutina => {
@@ -47,7 +47,7 @@ function getDayWorks(e,x){
 
         template += `
         <div class="r__rutina_box">
-            <div class="r__delete" ><img onclick() src="img/remove.svg"></div>
+            <div class="r__delete" ><img onclick="deleteRutine(${result[0].id},${d})" src="img/remove.svg"></div>
             <div class="r__p"><p>${result[0].titulo}</p></div>
             
             <div class="img__muscles">
@@ -63,3 +63,22 @@ function getDayWorks(e,x){
     `;
 }
 
+function deleteRutine(e,d){
+    let template = `
+    <div class="r__clicktohidde" onclick=" $('.___delete').css('display','none')" ></div>
+    <div  class="r__delete_box__">
+        <div>
+            <img id="r__" src="img/peligro.svg">
+            <p>Deseas eliminar</p>
+        </div>
+        <div>
+            <button type="button" class="r__btn btn-si" onclick="deleteConfirmedRutine(${e},${d})">Si</button>
+            <button type="button" class="r__btn btn-no" onclick=" $('.___delete').css('display','none')">No</button>
+
+        </div>
+    </div>
+    `;
+
+    $('.___delete').html(template);
+    $('.___delete').css('display','flex');
+}

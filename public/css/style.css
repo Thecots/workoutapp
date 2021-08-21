@@ -313,3 +313,92 @@ section{
     transform: scale(0.9);
 
 }
+
+
+.___delete{
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 15;
+    background-color: rgb(0 0 0 / 60%);
+    user-select: none;
+}
+
+.___delete .r__clicktohidde{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 20;
+}
+
+
+.___delete .r__delete_box__{
+    background-color: rgb(255, 255, 255);
+    border-radius: 10px;
+    width: 500px;
+    height: 200px;
+    z-index: 30;
+    padding: 10px;
+
+}
+
+.___delete .r__delete_box__ div:first-child{
+    width: 100%;
+    height: 50%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.___delete .r__delete_box__ div:first-child img{
+    width: 60px;
+}
+.___delete .r__delete_box__ div:first-child p{
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 5px;
+}
+
+.___delete .r__delete_box__ div:last-child{
+    width: 100%;
+    height: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.r__btn{
+    width: 100px;
+    height: 30px;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    text-shadow: 0 0 3px black;
+    transition: transform 0.1s ease-in;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.199);
+    cursor: pointer;
+
+}   
+
+.btn-si{
+    background-color: rgb(241, 88, 88);
+}
+
+.btn-no{
+    background-color: rgb(88, 241, 88);
+}
+
+.r__btn:hover{
+    transform: scale(1.1);
+
+}
+
+.r__btn:active{
+    transform: scale(0.9);
+
+}
