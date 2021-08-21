@@ -9,6 +9,10 @@
     color: black;
 }
 
+img{
+    user-select: none;
+}
+
 body{
     background-color: #dae0e6;
     display: flex;
@@ -182,6 +186,22 @@ section{
     display: flex;
     align-items: center;
     flex-direction: column;
+}
+
+
+
+.w__player {width:100%;height:500px;}
+
+@media screen and (max-width: 500px) {
+    .w__player {width:100%;height:225px;}
+ }
+
+@media screen and (max-width: 450px) {
+   .w__player {width:100%;height:380px;}
+}
+
+@media screen and (max-width: 768px) {
+   .w__player {width:100%;height:325px;}
 }
 
 
