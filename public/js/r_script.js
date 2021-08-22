@@ -30,6 +30,7 @@ socket.on('server:Rutinas', function(data){
 })
 
 socket.on('server:restart_rutines', () =>{
+    loadScreen(true);
     socket.emit('client:get_Rutinas+Horario');
 })
 
