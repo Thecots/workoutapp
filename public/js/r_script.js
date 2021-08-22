@@ -81,7 +81,6 @@ function deleteRutine(e,d){
         </div>
     </div>
     `;
-
     $('.___delete').html(template);
     $('.___delete').css('display','flex');
 }
