@@ -3,11 +3,12 @@ loadScreen(true);
 socket.emit('client:get_Rutinas+Horario');
 
 const dias = ['Domingo','Lunes','Martes','Miercoles','Jueves','Viernes','Sabado',];
+var Rutines_ = '';
 
 socket.on('server:Rutinas', function(data){
     let [DS, R] = data;
     let template = '';
-
+    Rutines_ = R;
     for (let i = 0; i < DS.length; i++) {
        template += `
             <div class="r_div">
@@ -61,7 +62,7 @@ function getDayWorks(e,x,d){
     }
     return template += `</div>
         <div class="add_workout">
-            <img src="img/more.svg">
+            <img onclick="addRutine(${d})" src="img/more.svg">
         </div>
     `;
 }
@@ -92,3 +93,36 @@ function deleteConfirmedRutine(e,x){
     $('.___delete').css('display','none');
 }
 
+function addRutine(d){
+    let template = `
+    <div class="r__clicktohidde" onclick=" $('.___delete').css('display','none')" ></div>
+    <div  class="r__add_box__">
+       <div class="r__inp">
+            <h1>Añadir rutina</h1>
+            <select value="">
+                ${addRutineOption()}
+            </select>
+       </div>
+    
+
+        <div class="r__btn_">
+            <button class="r__btn btn-si" onclick="$('.___delete').css('display','none')"">Cancelar</button>
+            <button class="r__btn btn-no">Añadir</button>
+       </div>
+    </div>
+    `;
+    $('.___delete').html(template);
+    $('.___delete').css('display','flex');
+
+}
+
+function addRutineOption() {
+    let e = Rutines_;
+    template = '';
+    for(let i = 0; i < e.length; i++){
+        template += `
+            <option>${e[i].titulo}</option>
+        `;
+    }
+    return template;
+}
