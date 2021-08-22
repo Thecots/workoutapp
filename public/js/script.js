@@ -27,7 +27,7 @@ socket.on('server:Rutinas', function(data){
         </div>
     `
     }
-    $('.grid').append(template);
+    $('.grid').html(template);
 
 })
 

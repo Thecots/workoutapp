@@ -232,6 +232,13 @@ section{
     flex-direction: column;
 }
 
+
+.r_section .r_div:nth-child(1){
+    order: 1;
+}
+
+
+
 .r_section .r__day{
     background-color: royalblue;
     color: white;

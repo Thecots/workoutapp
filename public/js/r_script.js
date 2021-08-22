@@ -2,7 +2,7 @@ var socket = io();
 loadScreen(true);
 socket.emit('client:get_Rutinas+Horario');
 
-const dias = ['Lunes','Martes','Miercoles','Jueves','Viernes','Sabado','Domingo'];
+const dias = ['Domingo','Lunes','Martes','Miercoles','Jueves','Viernes','Sabado',];
 
 socket.on('server:Rutinas', function(data){
     let [DS, R] = data;
@@ -21,10 +21,13 @@ socket.on('server:Rutinas', function(data){
     }
     
     loadScreen(false);
-    $('.grid').append(template);
+    $('.grid').html(template);
 
 })
 
+socket.on('server:restart_rutines', () =>{
+    socket.emit('client:get_Rutinas+Horario');
+})
 
 // Functions
 
@@ -82,3 +85,11 @@ function deleteRutine(e,d){
     $('.___delete').html(template);
     $('.___delete').css('display','flex');
 }
+
+
+
+function deleteConfirmedRutine(e,x){
+    socket.emit('client:deleteRutineDay', [e,x]);
+    $('.___delete').css('display','none');
+}
+
