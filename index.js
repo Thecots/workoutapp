@@ -1,4 +1,3 @@
-console.clear();
 const express = require('express');
 const app = express();
 const http = require('http').Server(app);
@@ -63,11 +62,13 @@ io.on('connection', (socket) => {
 
   socket.on('client:deleteRutineDay', data =>{
     let DS = JSON.parse(fs.readFileSync(path.resolve(__dirname, 'data/diarioSemanal.json')));
-    let [rut,d, p] = data;
+    let [d, p, c] = data; // rut = id // d = dia
     let x = DS;
-    DS = DS[p].set
-    let result = DS[d].indexOf(rut);
-    DS[d].splice(result, 1);
+    DS = DS[c].set;
+    console.log(d, p);
+    DS[p].splice(d, 1);
+
+
     fs.writeFileSync(path.resolve(__dirname, 'data/diarioSemanal.json'), JSON.stringify(x));
     io.emit('server:restart_rutines');  
   });

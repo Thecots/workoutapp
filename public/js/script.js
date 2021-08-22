@@ -8,8 +8,8 @@ socket.on('server:Diario_Semanal', function(data) {
         <p>Rutinas de hoy: ${dayWork(data)}</p>
         <img onclick="window.location.href='/rutinas'" src="img/conf.svg">
     `;
-    $('.alert-box').html('');
-    $('.alert-box').append(template);
+    $('#alert-box-configure').html('');
+    $('#alert-box-configure').append(template);
 });
 
 socket.on('server:RutinasIndex', function(data){
@@ -75,4 +75,18 @@ function musclesImg(e){
 function video(e){
     window.location.href = "/watch?v="+e;
 
+}
+
+
+var optBtn = false;
+function options(){
+    if(optBtn != true){
+        optBtn = true;
+        $('.r__options_btn img').css('transform','rotate(90deg)');
+        $('.r__options_box').css('display','flex');
+    }else{
+        optBtn = false;
+        $('.r__options_btn img').css('transform','rotate(0deg)');
+        $('.r__options_box').css('display','none');
+    }
 }

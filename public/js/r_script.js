@@ -52,10 +52,9 @@ function getDayWorks(e,x,d){
         let result = x.filter(rutina => {
             return rutina.id == e[i];
         });
-
         template += `
         <div class="r__rutina_box">
-            <div class="r__delete" ><img onclick="deleteRutine(${result[0].id},${d})" src="img/remove.svg"></div>
+            <div class="r__delete" ><img onclick="deleteRutine(${i},${d})" src="img/remove.svg"></div>
             <div class="r__p"><p>${result[0].titulo}</p></div>
             
             <div class="img__muscles">
