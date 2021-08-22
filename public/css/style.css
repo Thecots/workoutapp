@@ -104,6 +104,8 @@ section{
     padding: 2px 5px; 
     color: white;
     font-weight: 400;
+    white-space: nowrap;
+
 }
 
 .i__video_box div{
@@ -376,7 +378,7 @@ section{
     height: 200px;
     z-index: 30;
     padding: 10px;
-
+    margin: 0 20px;
 }
 
 .___delete .r__delete_box__ div:first-child{
@@ -445,6 +447,7 @@ section{
     height: 200px;
     z-index: 30;
     padding: 10px;
+    margin: 0 20px;
 }
 
 .r__add_box__ .r__inp{
