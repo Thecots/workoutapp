@@ -38,9 +38,9 @@ io.on('connection', (socket) => {
     let DS = JSON.parse(fs.readFileSync(path.resolve(__dirname, 'data/diarioSemanal.json')));
     let R = JSON.parse(fs.readFileSync(path.resolve(__dirname, 'data/rutinas.json')));
     let finalSend = []
-    for (let i = 0; i < DS[(date.getDay()-1)].length; i++) {
+    for (let i = 0; i < DS[(date.getDay())].length; i++) {
       let result = R.filter(rutina => {
-        return rutina.id == DS[(date.getDay()-1)][i];
+        return rutina.id == DS[(date.getDay())][i];
       })
       if(result[0] != undefined){
         finalSend.push(result[0]);
