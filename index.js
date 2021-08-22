@@ -37,6 +37,7 @@ io.on('connection', (socket) => {
     let DS = JSON.parse(fs.readFileSync(path.resolve(__dirname, 'data/diarioSemanal.json')));
     let R = JSON.parse(fs.readFileSync(path.resolve(__dirname, 'data/rutinas.json')));
     let finalSend = []
+    DS = DS[DS[0]].set;
     for (let i = 0; i < DS[(date.getDay())].length; i++) {
       let result = R.filter(rutina => {
         return rutina.id == DS[(date.getDay())][i];
@@ -56,26 +57,64 @@ io.on('connection', (socket) => {
   socket.on('client:get_Rutinas+Horario', () => {
     let DS = JSON.parse(fs.readFileSync(path.resolve(__dirname, 'data/diarioSemanal.json')));
     let R = JSON.parse(fs.readFileSync(path.resolve(__dirname, 'data/rutinas.json')));
-    io.emit('server:Rutinas', [DS,R]);
+    
+    io.emit('server:Rutinas', [DS[DS[0]],R,DS]);
   });
 
   socket.on('client:deleteRutineDay', data =>{
     let DS = JSON.parse(fs.readFileSync(path.resolve(__dirname, 'data/diarioSemanal.json')));
-    let [rut,d] = data;
-    let result = DS[d].indexOf(rut)
+    let [rut,d, p] = data;
+    let x = DS;
+    DS = DS[p].set
+    let result = DS[d].indexOf(rut);
     DS[d].splice(result, 1);
-    fs.writeFileSync(path.resolve(__dirname, 'data/diarioSemanal.json'), JSON.stringify(DS));
-    io.emit('server:restart_rutines');
+    fs.writeFileSync(path.resolve(__dirname, 'data/diarioSemanal.json'), JSON.stringify(x));
+    io.emit('server:restart_rutines');  
   });
 
   socket.on('client:addRutineDay', data =>{
     let DS = JSON.parse(fs.readFileSync(path.resolve(__dirname, 'data/diarioSemanal.json')));
-    let [r,d] = data;
+    let [r,d, p] = data;
+    let x = DS;
+    DS = DS[p].set;
     DS[d].push(r);
-    fs.writeFileSync(path.resolve(__dirname, 'data/diarioSemanal.json'), JSON.stringify(DS));
+    fs.writeFileSync(path.resolve(__dirname, 'data/diarioSemanal.json'), JSON.stringify(x));
     io.emit('server:restart_rutines');
   })
 
+  socket.on('client:changeSet', data => {
+    let DS = JSON.parse(fs.readFileSync(path.resolve(__dirname, 'data/diarioSemanal.json')));
+    DS[0] = data;
+    fs.writeFileSync(path.resolve(__dirname, 'data/diarioSemanal.json'), JSON.stringify(DS));
+    io.emit('server:restart_rutines');
+  });
+
+  socket.on('client:newSet', data => {
+    let DS = JSON.parse(fs.readFileSync(path.resolve(__dirname, 'data/diarioSemanal.json')));
+    let x = DS;
+    DS.push({"setid":DS.length,"setname":data,"set":[[],[],[],[],[],[],[]]});
+    DS[0] = DS.length-1;
+    fs.writeFileSync(path.resolve(__dirname, 'data/diarioSemanal.json'), JSON.stringify(x));
+    io.emit('server:restart_rutines');
+  });
+
+  socket.on('client:deleteSet', data => {
+    let DS = JSON.parse(fs.readFileSync(path.resolve(__dirname, 'data/diarioSemanal.json')));
+    console.log();
+    if(DS.length > 2){
+      DS.splice(data, 1);
+      DS[0] = DS.length-1;
+      for (let i = 1; i < DS.length; i++) {
+        DS[i].setid = i;
+      }
+      fs.writeFileSync(path.resolve(__dirname, 'data/diarioSemanal.json'), JSON.stringify(DS));
+      io.emit('server:restart_rutines');
+    }else{
+      io.emit('server:errorDeleteTest');
+    }
+
+
+  });
 });
 // Server
 http.listen(port, () => {

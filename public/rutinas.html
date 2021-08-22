@@ -15,8 +15,23 @@
     <header>
         <h1 onclick=" window.location.href = '/'">SRCOTS</h1><a href="/calendario">CALENDARIO</a>
     </header>
-    <div class="___delete">
-        
+    <div class="___delete"></div>
+    <div class="alert-box red">
+        <div class="r__options_btn " onclick="options()">
+            <p>Options</p><img class=".r__l" src="img/arrowHead.svg" alt="">               
+        </div>
+        <div class="r__options_box">
+            <hr>
+            <div class="r__wrap">
+                <p>Set seleccionado <select onclick="changeSet()" id="setsselect">
+                   
+                </select></p>
+                <div class="">
+                    <button class="r__btn btn-no" onclick="newSet()" style="background-color: rgba(67, 112, 247, 0.904);">Crear set</button>
+                    <button class="r__btn btn-si " onclick="borrarSet()">Borrar set</button>
+                </div>
+            </div>
+        </div>
     </div>
     <section class="grid r_section">
         <div class="loadScreen">

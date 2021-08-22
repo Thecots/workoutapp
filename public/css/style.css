@@ -323,6 +323,7 @@ section{
     width: 30px;
 }
 
+
 .r_section .__div .add_workout{
     width: 100px;
     background: #74ff92a6;
@@ -473,4 +474,110 @@ section{
     display: flex;
     justify-content: flex-end;
     gap: 10px;
+}
+
+.red{
+    background-color: rgba(60, 109, 255, 0.493)!important;
+    padding: 0 !important;
+    flex-direction: column;
+}
+
+
+.r__options_btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    cursor: pointer;
+    padding: 10px;
+}
+
+.r__options_btn img{
+    width: 10px;
+}
+
+.r__options_btn .r__r:hover{
+    transform: rotate(90deg);
+}
+
+.r__options_btn .r__l:hover{
+    transform: rotate(0deg);
+}
+
+.r__options_box{
+    display: none;
+    width: 100%;
+    height: auto;
+    flex-direction: column;
+    padding: 0 10px 10px 10px;
+}
+.r__options_box p{
+    white-space: nowrap;
+}
+
+.r__options_box select{
+    font-size: 14px;
+    height: 26px;
+    padding: 0 20px 0 2px;
+    outline: none;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+}
+
+.r__options_box hr{
+    margin-bottom: 9px !important;
+    border: none;
+    margin: 0 5px;
+    height: 1px;
+    background-color: black;
+}
+
+.r__options_box div{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 10px;
+}
+.r__wrap{
+    flex-wrap: wrap;
+}
+
+#newSetName{
+    border: none;
+    background: #dedede;
+    height: 30px;
+    font-size: 20px;
+    padding: 0 5px;
+    border-radius: 5px;
+}
+
+
+.s__addWorkout{
+    width: 50px;
+    height: 50px;
+    background-color: white;
+    box-shadow:
+    -7px -7px 20px 0px #fff9,
+    -4px -4px 5px 0px #fff9,
+    7px 7px 20px 0px #0002,
+    4px 4px 5px 0px #0001,
+    inset 0px 0px 0px 0px #fff9,
+    inset 0px 0px 0px 0px #0001,
+    inset 0px 0px 0px 0px #fff9,        inset 0px 0px 0px 0px #0001;    display: flex;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: transform 0.1s ease-in;
+
+}
+
+.s__addWorkout:hover{
+    transform: scale(1.1);
+
+}
+
+.s__addWorkout:active{
+    transform: scale(0.9);
+
 }

@@ -4,9 +4,12 @@ socket.emit('client:get_Rutinas+Horario');
 
 const dias = ['Domingo','Lunes','Martes','Miercoles','Jueves','Viernes','Sabado',];
 var Rutines_ = '';
+var currentSet = '';
 
 socket.on('server:Rutinas', function(data){
-    let [DS, R] = data;
+    let [DS, R, totalSets] = data;
+    DS = DS.set;
+    currentSet = totalSets[0];
     let template = '';
     Rutines_ = R;
     for (let i = 0; i < DS.length; i++) {
@@ -20,7 +23,7 @@ socket.on('server:Rutinas', function(data){
         `;
         
     }
-    
+    loadSelectedSet(totalSets);
     loadScreen(false);
     $('.grid').html(template);
 
@@ -89,7 +92,7 @@ function deleteRutine(e,d){
 
 
 function deleteConfirmedRutine(e,x){
-    socket.emit('client:deleteRutineDay', [e,x]);
+    socket.emit('client:deleteRutineDay', [e,x,currentSet]);
     $('.___delete').css('display','none');
 }
 
@@ -130,7 +133,101 @@ function addRutineOption() {
 function addConfirmedRutine(d){
     let x = $('#select_id').val();
     if(x > 0){
-        socket.emit('client:addRutineDay', [x,d]);   
+        socket.emit('client:addRutineDay', [x,d,currentSet]);   
         $('.___delete').css('display','none');  
     }
+}
+
+var optBtn = false;
+function options(){
+    if(optBtn != true){
+        optBtn = true;
+        $('.r__options_btn img').css('transform','rotate(90deg)');
+        $('.r__options_box').css('display','flex');
+    }else{
+        optBtn = false;
+        $('.r__options_btn img').css('transform','rotate(0deg)');
+        $('.r__options_box').css('display','none');
+    }
+}
+
+function loadSelectedSet(e){
+    let template = '';
+    let j = ''
+    for (let i = 1; i < e.length; i++) {
+        if(e[0] != e[i].setid){
+            template += `
+            <option value="${e[i].setid}"}>${e[i].setname}</option>
+        `
+        }else{
+            template += `
+            <option selected value="${e[i].setid}">${e[i].setname}</option>
+        `  
+        }
+             
+    }
+
+
+    $('#setsselect').html(template);
+}
+
+function changeSet(){
+    let e = $('#setsselect').val();
+    if( e != currentSet){
+        socket.emit('client:changeSet', e);   
+    }
+}
+
+
+function newSet(){
+    let template = `
+    <div class="r__clicktohidde" onclick=" $('.___delete').css('display','none')" ></div>
+    <div  class="r__add_box__">
+       <div class="r__inp">
+            <h1>Nuevo set</h1>
+            <input id="newSetName" placeholder="Set name"></input>
+       </div>
+    
+
+        <div class="r__btn_">
+            <button class="r__btn btn-si" onclick="$('.___delete').css('display','none')">Cancelar</button>
+            <button class="r__btn btn-no" onclick="confirmNewSet()">Añadir</button>
+       </div>
+    </div>
+    `;
+    $('.___delete').html(template);
+    $('.___delete').css('display','flex');
+}
+
+function confirmNewSet(){
+    $('.___delete').css('display','none');
+    let e = $('#newSetName').val();
+    if(e == ''){
+        e = 'unnamed'
+    }
+    socket.emit('client:newSet',e); 
+};
+
+function borrarSet(){
+    let template = `
+    <div class="r__clicktohidde" onclick=" $('.___delete').css('display','none')" ></div>
+    <div  class="r__delete_box__">
+        <div>
+            <img id="r__" src="img/peligro.svg">
+            <p>Deseas eliminar</p>
+        </div>
+        <div>
+            <button type="button" class="r__btn btn-si" onclick="confirmDeleteSet(${currentSet})">Si</button>
+            <button type="button" class="r__btn btn-no" onclick=" $('.___delete').css('display','none')">No</button>
+
+        </div>
+    </div>
+    `;
+    $('.___delete').html(template);
+    $('.___delete').css('display','flex');
+}
+
+function confirmDeleteSet(e){
+    $('.___delete').css('display','none');
+    socket.emit('client:deleteSet',e); 
 }
