@@ -99,21 +99,21 @@ function addRutine(d){
     <div  class="r__add_box__">
        <div class="r__inp">
             <h1>Añadir rutina</h1>
-            <select value="">
+            <select id="select_id">
+                <option hidden selected>Selecciona una rutina</option>
                 ${addRutineOption()}
             </select>
        </div>
     
 
         <div class="r__btn_">
-            <button class="r__btn btn-si" onclick="$('.___delete').css('display','none')"">Cancelar</button>
-            <button class="r__btn btn-no">Añadir</button>
+            <button class="r__btn btn-si" onclick="$('.___delete').css('display','none')">Cancelar</button>
+            <button class="r__btn btn-no" onclick="addConfirmedRutine(${d})">Añadir</button>
        </div>
     </div>
     `;
     $('.___delete').html(template);
     $('.___delete').css('display','flex');
-
 }
 
 function addRutineOption() {
@@ -121,8 +121,16 @@ function addRutineOption() {
     template = '';
     for(let i = 0; i < e.length; i++){
         template += `
-            <option>${e[i].titulo}</option>
+            <option value="${e[i].id}">${e[i].titulo}</option>
         `;
     }
     return template;
+}
+
+function addConfirmedRutine(d){
+    let x = $('#select_id').val();
+    if(x > 0){
+        socket.emit('client:addRutineDay', [x,d]);   
+        $('.___delete').css('display','none');  
+    }
 }

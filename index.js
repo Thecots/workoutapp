@@ -28,7 +28,6 @@ app.get('/watch', (req, res) => {
 app.get('/rutinas', (req, res) => {
   res.sendFile(__dirname + '/public/rutinas.html');
 });
-console.log(date.getDay());
 // Socket
 io.on('connection', (socket) => {
   console.log(`connection form id:${socket.id}`);
@@ -51,7 +50,7 @@ io.on('connection', (socket) => {
 
   socket.on('client:get_Rutinas', () => {
     let R = JSON.parse(fs.readFileSync(path.resolve(__dirname, 'data/rutinas.json')));
-    io.emit('server:Rutinas', R);
+    io.emit('server:RutinasIndex', R);
   });
   
   socket.on('client:get_Rutinas+Horario', () => {
@@ -67,7 +66,14 @@ io.on('connection', (socket) => {
     DS[d].splice(result, 1);
     fs.writeFileSync(path.resolve(__dirname, 'data/diarioSemanal.json'), JSON.stringify(DS));
     io.emit('server:restart_rutines');
-    
+  });
+
+  socket.on('client:addRutineDay', data =>{
+    let DS = JSON.parse(fs.readFileSync(path.resolve(__dirname, 'data/diarioSemanal.json')));
+    let [r,d] = data;
+    DS[d].push(r);
+    fs.writeFileSync(path.resolve(__dirname, 'data/diarioSemanal.json'), JSON.stringify(DS));
+    io.emit('server:restart_rutines');
   })
 
 });

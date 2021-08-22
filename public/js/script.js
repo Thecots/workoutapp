@@ -12,7 +12,7 @@ socket.on('server:Diario_Semanal', function(data) {
     $('.alert-box').append(template);
 });
 
-socket.on('server:Rutinas', function(data){
+socket.on('server:RutinasIndex', function(data){
     let template = '';
     for (let i = 0; i < data.length; i++) {
         let x = data[i].link.replace('https://www.youtube.com/watch?v=','');
