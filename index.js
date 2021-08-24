@@ -7,8 +7,6 @@ const fs = require('fs');
 const path = require('path');
 const date = new Date()
 
-// REMEMBER!!! Saco de BOEXEO!!
-
 // Routes
 app.use(express.static('public'));
 
@@ -113,9 +111,47 @@ io.on('connection', (socket) => {
     }else{
       io.emit('server:errorDeleteTest');
     }
+  });
 
+  socket.on('client:get_muscles', () => {
+    let M = JSON.parse(fs.readFileSync(path.resolve(__dirname, 'data/musculos.json')));
+    io.emit('server:musculos', M[0]);
 
   });
+
+  socket.on('client:save_rutina', data => {
+    let R = JSON.parse(fs.readFileSync(path.resolve(__dirname, 'data/rutinas.json')));
+    data.id = (R.length)+1;
+    console.log(data.titulo);
+
+    if(data.titulo == ''){
+      data.titulo = 'unnamed';
+    }
+    if(data.link == ''){
+      data.link = 'unlinked';
+    }
+    if(data.musculos.length == 0){
+      data.musculos.push('tren_superior');
+    }
+    R.push(data);
+    fs.writeFileSync(path.resolve(__dirname, 'data/rutinas.json'), JSON.stringify(R));
+    io.emit('server:RutinasIndex', R);
+  });
+  socket.on('client:deleteRutineSet', data => {
+    let R = JSON.parse(fs.readFileSync(path.resolve(__dirname, 'data/rutinas.json')));
+    const found = R.findIndex(element => element.id == data);
+    R.splice(found, 1);
+    fs.writeFileSync(path.resolve(__dirname, 'data/rutinas.json'), JSON.stringify(R));
+    io.emit('server:RutinasIndex', R);
+  });
+ 
+  socket.on('client:save_edit_rutina', data =>{
+    let R = JSON.parse(fs.readFileSync(path.resolve(__dirname, 'data/rutinas.json')));
+    const found = R.findIndex(element => element.id == data.id);
+    R[found] = data;
+    fs.writeFileSync(path.resolve(__dirname, 'data/rutinas.json'), JSON.stringify(R));
+    io.emit('server:RutinasIndex', R);
+  })
 });
 // Server
 http.listen(port, () => {

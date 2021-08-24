@@ -81,7 +81,7 @@ section{
     max-width: 250px;
     min-width: 150px;
     width: auto;
-
+    position: relative;
     border-radius: 5px;
     cursor: pointer;
     transition: transform ease 0.1s;
@@ -95,12 +95,32 @@ section{
     inset 0px 0px 0px 0px #fff9,
     inset 0px 0px 0px 0px #0001,
     inset 0px 0px 0px 0px #fff9,        inset 0px 0px 0px 0px #0001;
-  transition:box-shadow 0.6s cubic-bezier(.79,.21,.06,.81);
+    transition:box-shadow 0.6s cubic-bezier(.79,.21,.06,.81);
+} 
 
+.i__video_box_1{
+    max-width: 250px;
+    min-width: 150px;
+    width: auto;
+    position: relative;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: transform ease 0.1s;
+    overflow: hidden;
+
+    box-shadow:
+    -7px -7px 20px 0px #fff9,
+    -4px -4px 5px 0px #fff9,
+    7px 7px 20px 0px #0002,
+    4px 4px 5px 0px #0001,
+    inset 0px 0px 0px 0px #fff9,
+    inset 0px 0px 0px 0px #0001,
+    inset 0px 0px 0px 0px #fff9,        inset 0px 0px 0px 0px #0001;
+    transition:box-shadow 0.6s cubic-bezier(.79,.21,.06,.81);
 } 
 
 
-.i__video_box p{
+#i__video_box p{
     padding: 2px 5px; 
     color: white;
     font-weight: 400;
@@ -108,7 +128,7 @@ section{
 
 }
 
-.i__video_box div{
+#i__video_box div{
     padding: 2px 5px;
 }
 
@@ -116,24 +136,56 @@ section{
     transform: scale(1.05);
 }
 
-.i__video_box .img__muscles{
+.i__video_box:active{
+    transform: scale(0.95);
+}
+
+#i__video_box .img__muscles{
     display: flex;
 }
 
-.i__video_box .img__muscles img{
+#i__video_box .img__muscles img{
     width: 25px;
 }
 
-.i__video_box p {
+#i__video_box p {
     background-color: royalblue;
     width: 100%;
 }
-.i__video_box hr{
+#i__video_box hr{
     border: none;
     background-color: rgba(0, 0, 0, 0.884);
     height: 1px;
 
 }
+
+
+.s__delete{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background: #ff8a8ac7 ;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+    padding: 0 !important;
+}
+
+.s__delete img{
+    width: 55px;
+    padding: 10px;
+    transition: transform 0.1s ease-in;
+}
+
+.s__delete img:hover{
+    transform: scale(1.1);
+}
+
+.s__delete img:active{
+    transform: scale(0.9);
+}
+
 /* ALERT BOX */
 
 .alert-box{
@@ -581,3 +633,114 @@ section{
     transform: scale(0.9);
 
 }
+
+.r__delete_box__index{
+    background-color: rgb(255, 255, 255);
+    border-radius: 10px;
+    width: 500px;
+    min-height: 10px;
+    height: auto;
+    z-index: 30;
+    padding: 10px;
+    margin: 0 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.r__delete_box__index .s__inputs{
+    width: 100%;
+    height: auto;
+}
+
+.s__inputs p{
+    margin-top: 15px;
+    font-size: 20px;
+}
+
+.s__inputs input{
+    border: none;
+    background: #dedede;
+    height: 30px;
+    font-size: 20px;
+    padding: 0 5px;
+    border-radius: 5px;
+    width: 100%;
+}
+
+
+/* SELECT MULTIPLE */
+
+.sm_box{
+    max-height: 35px;
+}
+
+.sm_muscles_box{
+    background: #dedede;
+    max-height: 135px;
+    overflow: hidden;
+    overflow-y: auto;
+    margin-top: 6px;
+    z-index: 120;
+    display: block;
+    border-radius: 5px;
+}
+
+.sm_muscles_box label{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 0 7px;
+    position: relative;
+
+}
+
+.sm_muscles_box label:hover{
+    background-color: rgb(240, 240, 240);
+}
+
+.sm_muscles_box label input{
+    width: 20px;
+}
+
+.sm_muscles_box label img{
+    width: 25px;
+    margin-left: 5px;
+}
+
+.sm_m_s__{
+    margin-top: 10px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.inv_box_x{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+}
+
+.x_click{
+    z-index: 10;
+}
+
+.x_delete, .x_edit{
+    z-index: 99;
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+.x_delete img, .x_edit img{
+    width: 55px;
+    padding: 10px;
+}
+
+
+.x_delete{
+    background: #ff8a8ac7;
+}
+.x_edit{
+    background: #98ff8ac7;
+}
+
