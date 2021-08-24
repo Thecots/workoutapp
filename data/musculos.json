@@ -1,4 +1,15 @@
 [
-    ["antebrazo","tricep","bicep","pecho","abs","hombro","trapecio","espalda","gluteo","cuadricep","pantorrillas"]
+    [
+        "antebrazo",
+        "tricep",
+        "bicep",
+        "pecho",
+        "abs",
+        "hombro",
+        "trapecio",
+        "laterales",
+        "gluteo",
+        "cuadricep",
+        "pantorrillas"
+    ]
 ]
-
