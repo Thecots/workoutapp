@@ -1,14 +1,39 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>srcots</title>
     <link rel="icon" href="img/logo.png">
-
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/loading.css">
+    <link rel="stylesheet" href="css/scrollbar.css">
+    <link rel="stylesheet" href="css/calendario.css">
 </head>
 <body>
-    ad
+    <header>
+        <h1 onclick=" window.location.href = '/'">SRCOTS</h1><a href="/calendario">CALENDARIO</a>
+    </header>
+   
+    <div class="___delete"></div>
+    
+    <section class="grid">
+        <div class="loadScreen">
+            <div class=""></div>
+            <span></span>
+        </div>
+        <div class="calendario">
+          <div class="month">
+            
+          </div>
+        </div>
+    </section>
+    
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="js/loading.js"></script>
+
+    <script src="js/c_script.js"></script>
 </body>
 </html>
