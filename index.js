@@ -25,6 +25,10 @@ app.get('/watch', (req, res) => {
 app.get('/rutinas', (req, res) => {
   res.sendFile(__dirname + '/public/rutinas.html');
 });
+
+app.get('/download', (req, res) => {
+  res.sendFile(__dirname + '/data/calendario.json');
+});
 // Socket
 io.on('connection', (socket) => {
   console.log(`connection form id:${socket.id}`);
