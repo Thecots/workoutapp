@@ -19,6 +19,7 @@ socket.on('server:Diario_Semanal', function(data) {
 });
 
 socket.on('server:RutinasIndex', function(data){
+    socket.emit('client:get_Diario_Semanal');
     let template = '';
     RUT = data;
     for (let i = 0; i < data.length; i++) {

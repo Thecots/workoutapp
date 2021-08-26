@@ -1,4 +1,3 @@
-console.clear();
 const express = require('express');
 const app = express();
 const http = require('http').Server(app);
@@ -138,12 +137,27 @@ io.on('connection', (socket) => {
     fs.writeFileSync(path.resolve(__dirname, 'data/rutinas.json'), JSON.stringify(R));
     io.emit('server:RutinasIndex', R);
   });
+
   socket.on('client:deleteRutineSet', data => {
     let R = JSON.parse(fs.readFileSync(path.resolve(__dirname, 'data/rutinas.json')));
+    let DS = JSON.parse(fs.readFileSync(path.resolve(__dirname, 'data/diarioSemanal.json')));
     const found = R.findIndex(element => element.id == data);
     R.splice(found, 1);
+    for(let i = 1; i < DS.length; i++){
+      for(let j = 0; j < DS[i].set.length; j++){
+        const found = DS[i].set[j].findIndex(element => element == data);
+        if(found != -1){
+          console.log(DS[i].set[j]);
+          DS[i].set[j].splice(found, 1);
+        }
+      }
+    }
+
     fs.writeFileSync(path.resolve(__dirname, 'data/rutinas.json'), JSON.stringify(R));
+    fs.writeFileSync(path.resolve(__dirname, 'data/diarioSemanal.json'), JSON.stringify(DS));
     io.emit('server:RutinasIndex', R);
+    
+
   });
  
   socket.on('client:save_edit_rutina', data =>{
