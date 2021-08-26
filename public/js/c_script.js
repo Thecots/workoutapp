@@ -1,7 +1,17 @@
-loadScreen(false);
+var socket = io();
+loadScreen(true);
+socket.emit('client:get_Rutinas');
+var RUT = '';
+socket.on('server:RutinasIndex', function(data){
+    RUT = data;
+});
+socket.emit('client:get_calendario');
+var C = '';
 var dt = new Date();
+var firstloadTime = 0;
 
-function clalendario(month, year){
+function clalendario(month, year, z){
+
     let M = ['Ene','Feb','Mar','Abr','May','Jun',"Jul","Ago","sept","Oct","Nov","Dic"];
     let semana = '<div class="week">'; 
     let m = 0;
@@ -13,6 +23,18 @@ function clalendario(month, year){
     if(month == 0){
         month = 12;
         year--;
+    }
+    let c = ''
+    
+    if(firstloadTime == 0){
+        c = z[z.findIndex(element => element.year == year)].month[(month-1)];
+        firstloadTime++;
+    }else{
+        if(C.findIndex(element => element.year == year) != -1) {
+            c = C[C.findIndex(element => element.year == year)].month[(month-1)];
+        }else{
+            c = [];
+        }   
     }
 
     let template = `
@@ -131,18 +153,59 @@ function clalendario(month, year){
             g = 'outOfMonth';
             j = `onclick="clalendario(${(month-1)},${year})"`;
         }
+        let u = '';
+        if(t != true && t!= 'x'){
+            let d = c.findIndex(element => element.dia == e);
+            if(d != -1){
+                if(c[d].dia == e){
+                    for (let i = 0; i < c[d].rutinas.length; i++) {
+                        if(c[d].rutinas.length <= 3){
+                            let r = RUT.findIndex(element => element.id == c[d].rutinas[i]);
+                            u += `
+                                <div class="c_set">${RUT[r].titulo} ${musculosImg(RUT[r].musculos)}</div>
+                            `;
+                        }else{
+                            if(i<2){
+                                let r = RUT.findIndex(element => element.id == c[d].rutinas[i]);
+                                u += `
+                                    <div class="c_set">${RUT[r].titulo} ${musculosImg(RUT[r].musculos)}</div>
+                                `;
+                            }else{
+                                u += `
+                                    <div class="c_set">${c[d].rutinas.length-i} más</div>
+                                `;
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+       
         return `
-        <div class="day ${g}" ${j}>
+        <div class="day ${g}" ${j} onclick="alert(${e})">
             <div  class="number">${e}</div>
-            <div class="rutinas"></div>
+            <div class="rutinas">
+                <div class="rt_">${u}</div>
+            </div>
         </div>
         `
     }
+
+    function musculosImg(e){
+        let t = '';
+        for (let i = 0; i < e.length; i++) {
+           t+=`
+            <img src="img/muscles/${e[i]}.png">
+           `;
+        }
+        return t;
+    }
 }
 
-
-
-
-/* Start here */
-
-clalendario(8, 2021);
+var C = '';
+socket.on('server:calendario', async (data) => {
+    loadScreen(false);
+    C = data;
+    clalendario(8, 2021, data);
+});

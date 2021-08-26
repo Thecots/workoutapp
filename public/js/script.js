@@ -27,7 +27,7 @@ socket.on('server:RutinasIndex', function(data){
         
         template += `
         <div  class="i__video_box" id="i__video_box">
-            <div class="x_click inv_box_x" onclick="video('${x}')"></div>
+            <div class="x_click inv_box_x" onclick="video('${x}',${data[i].id})"></div>
             <div class="x_delete inv_box_x" onclick="deleteRutineSet(${data[i].id})"><img src="img/remove.svg"></div>
             <div class="x_edit inv_box_x" onclick="editRutineSet(${i})"><img src="img/editar.svg"></div>
             <p>${data[i].titulo}</p>
@@ -52,16 +52,16 @@ function dayWork(e){
             if(e.length > 1){
                 if(i < (e.length-1)){
                     r += `
-                    <a onclick="window.location.href = '/watch?v=${x}'">${e[i].titulo}</a> - 
+                    <a onclick="window.location.href = '/watch?id=${e[i].id}&v=${x}' ">${e[i].titulo}</a> - 
                 `
                 }else{
                     r += `
-                    <a onclick="window.location.href = '/watch?v=${x}'">${e[i].titulo}</a>
+                    <a onclick="window.location.href = '/watch?id=${e[i].id}&v=${x}' ">${e[i].titulo}</a>
                     `
                 }
             }else{
                 r += `
-                    <a onclick="window.location.href = '/watch?v=${x}'">${e[i].titulo}</a>
+                    <a onclick="window.location.href = '/watch?id=${e[i].id}&v=${x}' ">${e[i].titulo}</a>
                 `
             }
     
@@ -83,8 +83,8 @@ function musclesImg(e){
     return template;
 }
 
-function video(e){
-    window.location.href = "/watch?v="+e;
+function video(e,l){
+    window.location.href = `/watch?id=${l}&v=${e}`;
 
 }
 

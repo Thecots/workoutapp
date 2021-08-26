@@ -127,13 +127,47 @@
 .day .rutinas{
   width: 100%;
   height: 100%;
-  overflow-y: auto;
+  overflow: none;
 }
 
 
 @media (max-width: 550px) {
   .calendario .data p{
       font-size: 10px;
-  
   }
 }
+
+
+.rutinas{
+  overflow:hidden;
+  position: relative;
+}
+
+.rt_{
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.c_set{
+  width: 100%;
+  height: 25px;
+  overflow: none;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  white-space: nowrap;
+  border-radius: 5px;
+  padding-left: 3px;
+  background-color: rgb(68, 68, 68);
+  color: white;
+}
+
+
+.c_set img {
+  width: 20px;
+}
+
